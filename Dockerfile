@@ -5,7 +5,7 @@
 ## FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift 
 ###############################################################################
 
-FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift 
+FROM openjdk
 LABEL maintainer="taneng_26@hotmail.com"
  
 ###############################################################################
