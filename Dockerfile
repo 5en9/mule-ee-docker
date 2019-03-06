@@ -33,6 +33,7 @@ ADD     ./jq /app/jq
 ADD     ./startMule.sh /app/mule/bin/
 ADD     ./wrapper.conf /app/mule/conf/
 ADD     ./hellodocker-1.0.0-SNAPSHOT.zip /app/mule/apps
+ADD	./tool-rpm /app/mule/am/bin/tools/tool-rpm
    
 ## Mule  app port
 EXPOSE  8081
