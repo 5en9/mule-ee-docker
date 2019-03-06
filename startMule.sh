@@ -268,6 +268,21 @@ if [ "$maxMemory" == "" ]
     then
         maxMemory=512
 fi
+
+#install am
+# Get Server id from AMC
+echo "Getting server status from $hybridAPI/servers..."
+serverData=$(curl $proxyOption -s $hybridAPI/servers/ -H "X-ANYPNT-ENV-ID:$envId" -H "X-ANYPNT-ORG-ID:$orgId" -H "Authorization:Bearer $accessToken")
+
+jqParam=".data[] | select(.name==\"$serverName\").id"
+serverId=$(echo $serverData | /app/jq --raw-output "$jqParam")
+echo "Server id of $serverName: $serverId"
+# Setup monitoring agent & background start it
+echo "Setting up monitoring"
+/app/mule/am/bin/install -x true -s $serverId
+/app/mule/am/bin/setup &
+
+
 echo "Starting Mule"
  
 # Start mule!
