@@ -10,7 +10,7 @@ LABEL maintainer="taneng_26@hotmail.com"
  
 ###############################################################################
 ## Setting up the arguments
-ARG     muleVersion=3.9.0
+ARG     muleVersion=3.9.1
 ARG     muleDistribution=mule-ee-distribution-standalone-$muleVersion.tar.gz
 ARG     muleHome=/app/mule-enterprise-standalone-$muleVersion
  
