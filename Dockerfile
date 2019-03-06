@@ -48,6 +48,7 @@ RUN mkdir /app/mule/.mule && \
         chmod -R 777 /app/mule/bin && \
 	chmod -R 777 /app/mule/conf && \
         chmod -R 777 /app/mule/logs && \
+	chomd -R 777 /app/mule/am &&\
 	chmod -R g=u /var /opt && \
 	chmod g=u /etc/passwd
 
