@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+[ -f /etc/sysconfig/filebeat ] && . /etc/sysconfig/filebeat
+RETVAL=0
+
+DAEMON=${AM_HOME}/filebeat/rpm/64/filebeat
+
+do_start() {
+    $WRAPPER $WRAPPER_ARGS -- $DAEMON $DAEMON_ARGS
+    RETVAL=$?
+    echo
+    return $RETVAL
+}
+
+do_restart() {
+    start
+}
