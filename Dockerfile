@@ -16,6 +16,7 @@ ARG     muleHome=/app/mule-enterprise-standalone-$muleVersion
  
 ###############################################################################
 ## MuleEE installation:
+USER 0
  
 ## Install Mule EE - these are the paths inside the Docker.
 WORKDIR  /app/
