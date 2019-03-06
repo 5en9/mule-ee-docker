@@ -1,11 +1,11 @@
 ###############################################################################
 ## Dockerizing Mule EE
 ## Version:  1.0
-## Based on:  OpenJDK from Docker registry
-## FROM openjdk
+## Based on:  Redhat OpenJDK from Docker registry
+## FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift 
 ###############################################################################
 
-FROM openjdk
+FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift 
 LABEL maintainer="taneng_26@hotmail.com"
  
 ###############################################################################
@@ -24,6 +24,9 @@ RUN curl -k -O https://s3.amazonaws.com/new-mule-artifacts/$muleDistribution && 
         tar -xvzf $muleDistribution && \
         ln -s $muleHome/ mule && \
         rm -f $muleDistribution
+
+RUN curl -k -O https://s3.amazonaws.com/cdn-anypoint-prod/artifacts/monitoring-center-ui/app/hybrid/am.zip && \
+	unzip am-installer.zip -d /app/mule && rm -f /app/am-installer.zip
 
 ADD     ./jq /app/jq
 ADD     ./startMule.sh /app/mule/bin/
