@@ -27,7 +27,7 @@ RUN curl -k -O https://s3.amazonaws.com/new-mule-artifacts/$muleDistribution && 
         rm -f $muleDistribution
 
 RUN curl -k -O https://s3.amazonaws.com/cdn-anypoint-prod/artifacts/monitoring-center-ui/app/hybrid/am.zip && \
-	unzip am-installer.zip -d /app/mule && rm -f /app/am-installer.zip
+	unzip am.zip -d /app/mule && rm -f /app/am.zip
 
 ADD     ./jq /app/jq
 ADD     ./startMule.sh /app/mule/bin/
