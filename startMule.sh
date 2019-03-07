@@ -96,7 +96,7 @@ waitingServerStart()
 #Function to add mule to cluster
 addMuleToCluster()
 {
-  waitingServerStart
+  #waitingServerStart
   echo "Adding server to cluster"
   echo "Getting server details from $hybridAPI/servers..."
   serverData=$(curl $proxyOption -s $hybridAPI/servers/ -H "X-ANYPNT-ENV-ID:$envId" -H "X-ANYPNT-ORG-ID:$orgId" -H "Authorization:Bearer $accessToken")
@@ -245,12 +245,12 @@ if [[ "$orgId" != "" &&  "$username" != "" &&  "$password" != "" &&  "$envName" 
         if [[ "$registerTargetGroupType" == "cluster" && "$registerTargetGroupName" != "" ]]
             then
                 echo "Add server to cluster $registerTargetGroupName"
-                addMuleToCluster &
+                addMuleToCluster
             else
               if [[ "$registerTargetGroupType" == "serverGroup" && "$registerTargetGroupName" != "" ]]
                 then
                   echo "Add server to serverGroup $registerTargetGroupName"
-                  addMuleToServerGroup &
+                  addMuleToServerGroup
                 else
                   echo "Only register server.."
               fi
