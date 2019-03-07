@@ -133,7 +133,7 @@ addMuleToCluster()
 #Function to add mule to servergroup
 addMuleToServerGroup()
 {
-  waitingServerStart
+  #waitingServerStart
   echo "Adding server to serverGroup"
   echo "Getting server details from $hybridAPI/servers..."
   serverData=$(curl $proxyOption -s $hybridAPI/servers/ -H "X-ANYPNT-ENV-ID:$envId" -H "X-ANYPNT-ORG-ID:$orgId" -H "Authorization:Bearer $accessToken")
