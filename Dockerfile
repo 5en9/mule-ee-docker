@@ -51,6 +51,7 @@ RUN mkdir /app/mule/.mule && \
 	mkdir /app/mule/machineagent && \
 	unzip /app/machineagent.zip -d /app/mule/machineagent && \
 	rm -f /app/machineagent.zip && \
+	chmod -R 777 /app/mule/machineagent && \
 	chmod -R 777 /app/mule/agent && \
         chmod -R 777 /app/mule/.mule && \
         chmod 755 /app/jq && \
