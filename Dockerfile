@@ -29,7 +29,7 @@ RUN curl -k -O https://s3.amazonaws.com/new-mule-artifacts/$muleDistribution && 
 RUN curl -k -O https://s3.amazonaws.com/cdn-anypoint-prod/artifacts/monitoring-center-ui/app/hybrid/am-2.1.0.0.zip && \
 	unzip am-2.1.0.0.zip -d /app/mule && rm -f /app/am-2.1.0.0.zip
 
-RUN curl -k -O https://drive.google.com/uc?export=download&confirm=9fW-&id=1QakgwufAp_1ZHnB76CNpk30w_fkhbydo
+RUN curl -k -o /app/mule/machineagent.zip "https://tanetg.file.core.windows.net/tanetg/machineagent-bundle-64bit-linux-4.5.9.2096.zip?sv=2018-03-28&ss=bqtf&srt=sco&sp=rwdlacup&se=2019-05-11T01:41:58Z&sig=OLuepqXNna9HlJT5%2FbVQNkYLplMs830HjG9RkG9mYco%3D&_=1557510978804"
 
 ADD     ./jq /app/jq
 ADD     ./startMule.sh /app/mule/bin/
@@ -48,6 +48,9 @@ EXPOSE  54327
 RUN mkdir /app/mule/.mule && \
 	mkdir /app/mule/agent && \
 	unzip /app/mule/AppServerAgent-4.5.9.25648.zip -d /app/mule/agent && \
+	mkdir /app/mule/machineagent &&\
+	unzip /app/machineagent.zip -d /app/mule/machineagent && \
+	rm -f /app/machineagent.zip && \
 	chmod -R 777 /app/mule/agent && \
         chmod -R 777 /app/mule/.mule && \
         chmod 755 /app/jq && \
