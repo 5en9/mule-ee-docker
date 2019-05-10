@@ -45,7 +45,7 @@ EXPOSE  54327
 
 RUN mkdir /app/mule/.mule && \
 	mkdir /app/mule/agent && \
-	unzip /app/mule/AppServerAgent-4.5.9.25648.zip -d /app/mule/agent
+	unzip /app/mule/AppServerAgent-4.5.9.25648.zip -d /app/mule/agent && \
 	chmod -R 777 /app/mule/agent && \
         chmod -R 777 /app/mule/.mule && \
         chmod 755 /app/jq && \
