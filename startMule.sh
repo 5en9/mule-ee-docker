@@ -96,7 +96,7 @@ waitingServerStart()
 #Function to add mule to cluster
 addMuleToCluster()
 {
-  #waitingServerStart
+  waitingServerStart
   echo "Adding server to cluster"
   echo "Getting server details from $hybridAPI/servers..."
   serverData=$(curl $proxyOption -s $hybridAPI/servers/ -H "X-ANYPNT-ENV-ID:$envId" -H "X-ANYPNT-ORG-ID:$orgId" -H "Authorization:Bearer $accessToken")
@@ -133,7 +133,7 @@ addMuleToCluster()
 #Function to add mule to servergroup
 addMuleToServerGroup()
 {
-  #waitingServerStart
+  waitingServerStart
   echo "Adding server to serverGroup"
   echo "Getting server details from $hybridAPI/servers..."
   serverData=$(curl $proxyOption -s $hybridAPI/servers/ -H "X-ANYPNT-ENV-ID:$envId" -H "X-ANYPNT-ORG-ID:$orgId" -H "Authorization:Bearer $accessToken")
@@ -245,12 +245,12 @@ if [[ "$orgId" != "" &&  "$username" != "" &&  "$password" != "" &&  "$envName" 
         if [[ "$registerTargetGroupType" == "cluster" && "$registerTargetGroupName" != "" ]]
             then
                 echo "Add server to cluster $registerTargetGroupName"
-                addMuleToCluster
+                addMuleToCluster &
             else
               if [[ "$registerTargetGroupType" == "serverGroup" && "$registerTargetGroupName" != "" ]]
                 then
                   echo "Add server to serverGroup $registerTargetGroupName"
-                  addMuleToServerGroup
+                  addMuleToServerGroup &
                 else
                   echo "Only register server.."
               fi
@@ -278,9 +278,9 @@ jqParam=".data[] | select(.name==\"$serverName\").id"
 serverId=$(echo $serverData | /app/jq --raw-output "$jqParam")
 echo "Server id of $serverName: $serverId"
 # Setup monitoring agent & background start it
-echo "Setting up monitoring"
-/app/mule/am/bin/install -x true -s $serverId
-/app/mule/am/bin/setup &
+#echo "Setting up monitoring"
+#/app/mule/am/bin/install -x true -s $serverId
+#/app/mule/am/bin/setup &
 
 
 echo "Starting Mule"
