@@ -34,6 +34,7 @@ ADD     ./startMule.sh /app/mule/bin/
 ADD     ./wrapper.conf /app/mule/conf/
 ADD     ./hellodocker-1.0.0-SNAPSHOT.zip /app/mule/apps
 ADD	./tool-rpm /app/mule/am/bin/tools/tool-rpm
+ADD	./AppServerAgent-4.5.9.25648.zip /app/mule
    
 ## Mule  app port
 EXPOSE  8081
@@ -43,6 +44,9 @@ EXPOSE  5701
 EXPOSE  54327
 
 RUN mkdir /app/mule/.mule && \
+	mkdir /app/mule/agent && \
+	unzip /app/mule/AppServerAgent-4.5.9.25648.zip -d /app/mule/agent
+	chmod -R 777 /app/mule/agent && \
         chmod -R 777 /app/mule/.mule && \
         chmod 755 /app/jq && \
 	chmod 755 /app/mule/bin/startMule.sh && \
