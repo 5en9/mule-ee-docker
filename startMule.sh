@@ -282,6 +282,8 @@ echo "Server id of $serverName: $serverId"
 #/app/mule/am/bin/install -x true -s $serverId
 #/app/mule/am/bin/setup &
 
+# startup appdynamic machine agent
+/app/mule/machineagent/jre/bin/java -jar /app/mule/machineagent/machineagent.jar &
 
 echo "Starting Mule"
  
